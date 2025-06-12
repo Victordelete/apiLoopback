@@ -17,7 +17,7 @@ services:
     env_file:
       - docker/loopback/docker.env
     command: "/./app/docker/loopback/start.sh"
-
+    
   mysql.dev.docker:
     container_name: "mysql_container"
     image: mysql_image
