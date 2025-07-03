@@ -1,7 +1,11 @@
 # our base image
 FROM mysql:5.7.28
 
-# specify the port number the container should expose
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=dev_aws
+ENV MYSQL_USER=victor
+ENV MYSQL_PASSWORD=victor
+
 EXPOSE 3306
 
-USER root
+#USER root

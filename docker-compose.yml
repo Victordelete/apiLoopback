@@ -1,13 +1,33 @@
 version: "3"
 services:
 
-  api.dev.docker:
+  mysql_dev_docker:
+    container_name: "mysql_container"
+    image: mysql_image
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dev_aws
+      MYSQL_USER: victor
+      MYSQL_PASSWORD: victor
+    volumes:
+      - ./:/app/
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+
+  api_dev_docker:
     container_name: "api_container"
     image: api_image
     user: root
     working_dir: /app/www/
     environment:
       - NODE_ENV=development
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=dev_aws
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_HOST=mysql_dev_docker
     volumes:
       - ./:/app/
     expose:
@@ -17,17 +37,3 @@ services:
     env_file:
       - docker/loopback/docker.env
     command: "/./app/docker/loopback/start.sh"
-    
-  mysql.dev.docker:
-    container_name: "mysql_container"
-    image: mysql_image
-    user: root
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dev_aws
-    volumes:
-      - ./:/app/
-    expose:
-      - 3306
-    ports:
-      - 3306:3306

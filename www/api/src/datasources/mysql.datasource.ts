@@ -4,8 +4,8 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'mysql',
   connector: 'mysql',
-  url: '',
-  host: 'localhost',
+  url: 'mysql_dev_docker',
+  host: 'mysql_dev_docker',
   port: 3306,
   user: 'root',
   password: 'root',
