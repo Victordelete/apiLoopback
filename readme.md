@@ -25,3 +25,5 @@ nc -vz localhost 3306
 docker-compose up --build
 
 apt-get install netcat-traditional
+
+nc -vz localhost 3001
